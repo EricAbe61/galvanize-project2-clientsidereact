@@ -1,23 +1,30 @@
 import { useState, useEffect } from 'react';
+import './App.css';
 
-function details({ id }) {
+function CharacterDetails({ id }) {
   const [details, setDetails] = useState(null);
 
- 
   useEffect(() => {
-    fetch('https://rickandmortyapi.com/api/character')
-      .then(response => response.json())
-      .then(data => setCharacterList(data.results))
-      .catch(error => console.error('Error fetching data:', error)); 
-  }, []);
+    if (id) {
+      fetch(`https://rickandmortyapi.com/api/character/${id}`)
+        .then(response => response.json())
+        .then(data => setDetails(data))
+        .catch(error => console.error('Error fetching character details:', error));
+    }
+  }, [id]);
+
+  if (!details) {
+    return <p>Loading...</p>;
+  }
 
   return (
-    <div className="Character Details">
-      <h2>{`${details.name.toUpperCase()}:`}</h2>
-      <p>Type: {details.types.map(typeInfo => typeInfo.type.name).join(', ')}</p>
-      <p>Abilities: {details.abilities.map(abilityInfo => abilityInfo.ability.name).join(', ')}</p>
+    <div className="character-details">
+      <p>Status: {details.status}</p>
+      <p>Species: {details.species}</p>
+      <p>Origin: {details.origin.name}</p>
     </div>
   );
 }
 
 export default CharacterDetails;
+
