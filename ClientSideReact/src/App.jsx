@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from 'react';
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import './App.css';
+import CharacterCard from './CharacterCard';
+import EpisodeCard from './EpiCard';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [characterList, setCharacterList] = useState([]);
+  const [episodeList, setEpisodeList] = useState([])
+
+  useEffect(() => {
+    fetch('https://rickandmortyapi.com/api/character')
+      .then(response => response.json())
+      .then(data => setCharacterList(data.results))
+      .catch(error => console.error('Error fetching data:', error)); 
+  }, []);
+
+  useEffect(() => {
+    fetch('https://rickandmortyapi.com/api/episode')
+      .then(response => response.json())
+      .then(data => setEpisodeList(data.results))
+      .catch(error => console.error('Error fetching data:', error)); 
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div>
+      <h2>Characters:</h2>
+      <div className="character-list">
+        {characterList.length === 0 ? (
+          <h3>Loading characters...</h3>
+        ) : (
+          characterList.map(character => (
+            <CharacterCard key={character.id} character={character} />
+          ))
+        )}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      <h2>Episodes:</h2>
+      <div className="episode-list">
+        {episodeList.length === 0 ? (
+          <h3>Loading episodes...</h3>
+        ) : (
+          episodeList.map(episode => (
+            <EpisodeCard key={episode.id} episode={episode} />
+          ))
+        )}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
+
+
