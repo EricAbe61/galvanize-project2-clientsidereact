@@ -10,7 +10,6 @@ function EpisodeCharacters({ id }) {
       fetch(`https://rickandmortyapi.com/api/episode/${id}`)
         .then(response => response.json())
         .then(data => {
-          // Fetch all characters using the character URLs from the episode data
           return Promise.all(data.characters.map(url => fetch(url).then(res => res.json())));
         })
         .then(characterData => {

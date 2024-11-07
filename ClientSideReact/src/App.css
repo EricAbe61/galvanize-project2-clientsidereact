@@ -1,107 +1,25 @@
-/* body {
-  background-image: url('https://wallpapers.com/images/high/cartoon-space-36icwgmm6zqk6jni.webp');
-  background-size: auto; 
-  background-position: center; 
-  background-repeat: no-repeat; 
-} 
-
-.app-header {
-  text-align: center;
-  padding: 2rem 0;
-  background-color: #1c1e22; 
-  color: #ebf0f1; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-}
-
-.app-header h1 {
-  font-size: 3rem; 
-  margin: 0;
-  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
-  font-weight: bold;
-}
-
-h2 {
-  text-align: center;
-  margin-top: 2rem;
-  font-size: 2rem;
-  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
-}
-
-.character-list, .episode-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.character-card, .episode-card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 1rem;
-  width: 200px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.character-card img {
-  width: 100%;
-  height: auto;
-  border-radius: 50%;
-}
-
-.character-card {
-  background-color: #29cfe8; 
-  border: 1px solid #444;    
-  border-radius: 10px;       
-  padding: 1rem;             
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-  color: #ffffff;            
-  text-align: center;        
-  width: 200px;              
-  margin: 1rem;              
-}
-
-.episode-card {
-  background-color: #29cfe8; 
-  border: 1px solid #444;    
-  border-radius: 10px;       
-  padding: 1rem;             
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-  color: #ffffff;            
-  text-align: center;        
-  width: 200px;              
-  margin: 1rem;              
-}
-
-.character-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.character-card {
-  text-align: center;
-  width: 100px;
-}
-
-.character-card img {
-  width: 100%;
-  border-radius: 50%;
-} */
-
 body {
   background-image: url('https://wallpapers.com/images/high/cartoon-space-36icwgmm6zqk6jni.webp');
   background-size: cover; 
   background-position: center; 
   background-repeat: no-repeat; 
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
 
 .app-header {
+  position: fixed;
+  top: 0; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  padding: 1rem 2rem;
+  color: #f0f3f6;
   text-align: center;
-  padding: 2rem 0;
-  background-color: #1c1e22; 
-  color: #ebf0f1; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  z-index: 10;
+  width: 100%; 
+  max-width: 800px; 
+  margin: 0 auto; 
 }
 
 .app-header h1 {
@@ -111,41 +29,69 @@ body {
   font-weight: bold;
 }
 
-h2 {
+/* Buttons for Characters and Episodes */
+.image-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 300px; /* Adjusts spacing between images */
+  width: 100vw; /* width of viewport */
+  height: 100vh; /* Height of viewport */
+  position: fixed; /* Puts container in the center of the viewport */
+  top: 0;
+  left: 0;
+}
+
+.image-button {
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: transform 0.2s;
+}
+
+.image-button:hover {
+  transform: scale(1.05);
+}
+
+/* conatiners for Character and Episode */
+.character-container, .episode-container {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
-  margin-top: 2rem;
+}
+
+.character-container h2, .episode-container h2 {
   font-size: 2rem;
+  margin-bottom: 10px;
+  color: #333;
   font-family: 'Comic Sans MS', 'Comic Sans', cursive;
 }
 
+/* styling for Characters and Episodes */
 .character-list, .episode-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  justify-content: center;
+  gap: 20px;
 }
 
+/* Styling for Characters and Episodes Cards*/
 .character-card, .episode-card {
-  border: 1px solid #ccc;
+  width: 180px;
+  padding: 15px;
+  background-color: #f5f5f5;
   border-radius: 8px;
-  padding: 1rem;
-  width: 200px;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background-color: #29cfe8; 
-  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
-  color: #ffffff;
-  margin: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.character-card img, .character-image {
+.character-image {
   width: 100%;
-  height: auto;
   border-radius: 50%;
-}
-
-.character-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1rem;
+  object-fit: cover;
+  margin-bottom: 10px;
 }
